@@ -1,0 +1,13 @@
+---
+title: "Random Forest Regression"
+author: "x, y, z"
+format:
+    revealjs:
+        theme: dark
+        footer: "Random Forest Regression"
+        slide-number: true
+jupyter: python3
+---
+# Was ist das?
+Random Forest Regression beschreibt eine Art von Regression, bei welchem kleine, unabhängige Modelle individuell eine Entscheidung treffen.
+Diese replizieren große Menschenmengen, wodurch sich die "richtige" (beliebteste) Meinung selbst mit Ausreißern durchsetzt.
