@@ -1,3 +1,1 @@
 # pr-sentation-regression-minority-report
-does not work
-$$\mathcal{L}_{\text{SM}} = \underbrace{-\frac{1}{4} G_{\mu\nu}^A G^{A\mu\nu} - \frac{1}{4} W_{\mu\nu}^a W^{a\mu\nu} - \frac{1}{4} B_{\mu\nu} B^{\mu\nu}}_{\text{Gauge Bosons}} + \underbrace{\sum_{f} \bar{\psi}_f i \gamma^\mu D_\mu \psi_f}_{\text{Fermion Dynamics}} + \underbrace{(D_\mu \Phi)^\dagger (D^\mu \Phi) - \mu^2 \Phi^\dagger \Phi - \lambda (\Phi^\dagger \Phi)^2}_{\text{Higgs Mechanism}} - \underbrace{\sum_{i,j=1}^3 \left( Y_{ij}^e \bar{L}_L^i \Phi e_R^j + Y_{ij}^u \bar{Q}_L^i \tilde{\Phi} u_R^j + Y_{ij}^d \bar{Q}_L^i \Phi d_R^j + \text{h.c.} \right)}_{\text{Yukawa Couplings}}$$
