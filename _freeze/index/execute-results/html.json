@@ -1,0 +1,12 @@
+{
+  "hash": "c3ae0332ac20eb8ff098076da22e10ca",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: Random Forest Regression\nauthor: x, y, z\nformat:\n  revealjs:\n    theme: dark\n    footer: Random Forest Regression\n    slide-number: true\n---\n\n# Was ist das?\nRandom Forest Regression beschreibt eine Art von Regression, bei welchem kleine, unabhängige Modelle individuell eine Entscheidung treffen.\nDiese replizieren große Menschenmengen, wodurch sich die \"richtige\" (beliebteste) Meinung selbst mit Ausreißern durchsetzt.\n\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}
