@@ -1,6 +1,6 @@
 ---
 title: "Random Forest Regression"
-author: "x, y, z"
+author: "Y2kun, PapyrusLikeMelon, WeizenMehl"
 format:
     revealjs:
         theme: dark
@@ -8,6 +8,28 @@ format:
         slide-number: true
 jupyter: python3
 ---
-# Was ist das?
+
+# Was ist das
 Random Forest Regression beschreibt eine Art von Regression, bei welchem kleine, unabhängige Modelle individuell eine Entscheidung treffen.
-Diese replizieren große Menschenmengen, wodurch sich die "richtige" (beliebteste) Meinung selbst mit Ausreißern durchsetzt.
+Diese spiegeln effektiv große Menschenmengen, wodurch sich die "richtige" (beliebteste) Meinung selbst mit Ausreißern durchsetzt.
+Kein Baum lernt über alle Merkmale eines Datensatzes. Stattdessen lernen alle Bäume einen kleinen Teil des Datensatzes kennen, der sich der anderen unterscheidet, wodurch auch vernachlässigte Aspekte besser einbezogen werden können. Am Ende gibt jeder Baum eine Voraussage (z.B. des Preises) ab, und der Durchschnitt dieser Summe wird als finaler Wert erkannt
+
+# Berechnung Bagging
+
+$F:$ gesammte Voraussage
+$f_n:$ Vorraussage des Baums n
+$n:$ Stelle des jetzigen Baums
+$N:$ Anzahl der Bäume
+$$F(x)=\frac 1N\sum_{n=1}^{N}f_n(x)$$
+
+# Nutzung
+RFR ist besonders in komplexen Datensätzen von Vorteil, bei denen manche auch variabel viel gewichtet sind. Jeder Baum behält den Überblick über seine spezifische "Expertise" und durch die Anzahl wird ein Bild durch die "perfekten" Einzelteile aufgebaut.
+Jedoch kommt es auch mit Nachteilen. Durch das Aufbauen mehrerer kleinen Teile wird nie ein gesamtes Bild erstellt, und bestimmte Daten können in manchen Fällen weit vom richtigen Preis e# Richtig
+
+---
+
+Random Forest Regression beschreibt eine Art von Regression, bei welchem kleine, unabhängige Modelle individuell eine Entscheidung treffen.
+Diese spiegeln effektiv große Menschenmengen, wodurch sich die "richtige" (beliebteste) Meinung selbst mit Ausreißern durchsetzt.
+
+# Realitätsbezug
+Jeder Baum stellt eine/n Expert en/in dar. Durch die Kombination von mehreren Expertenmeinungen mit einer jeweiligen spezialisierten Expertise kann die statistisch richtige Lösung gefunden werdenntfernt sein

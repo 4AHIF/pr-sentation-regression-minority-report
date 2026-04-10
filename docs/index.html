@@ -9,7 +9,7 @@
 <link href="index_files/libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.8.26">
 
-  <meta name="author" content="x, y, z">
+  <meta name="author" content="Y2kun, PapyrusLikeMelon, WeizenMehl">
   <title>Random Forest Regression</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -132,15 +132,34 @@
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-x, y, z 
+Y2kun, PapyrusLikeMelon, WeizenMehl 
 </div>
 </div>
 </div>
 
 </section>
 <section id="was-ist-das" class="title-slide slide level1 center">
-<h1>Was ist das?</h1>
-<p>Random Forest Regression beschreibt eine Art von Regression, bei welchem kleine, unabhängige Modelle individuell eine Entscheidung treffen. Diese replizieren große Menschenmengen, wodurch sich die “richtige” (beliebteste) Meinung selbst mit Ausreißern durchsetzt.</p>
+<h1>Was ist das</h1>
+<p>Random Forest Regression beschreibt eine Art von Regression, bei welchem kleine, unabhängige Modelle individuell eine Entscheidung treffen. Diese spiegeln effektiv große Menschenmengen, wodurch sich die “richtige” (beliebteste) Meinung selbst mit Ausreißern durchsetzt. Kein Baum lernt über alle Merkmale eines Datensatzes. Stattdessen lernen alle Bäume einen kleinen Teil des Datensatzes kennen, der sich der anderen unterscheidet, wodurch auch vernachlässigte Aspekte besser einbezogen werden können. Am Ende gibt jeder Baum eine Voraussage (z.B. des Preises) ab, und der Durchschnitt dieser Summe wird als finaler Wert erkannt</p>
+</section>
+
+<section id="berechnung-bagging" class="title-slide slide level1 center">
+<h1>Berechnung Bagging</h1>
+<p><span class="math inline">\(F:\)</span> gesammte Voraussage <span class="math inline">\(f_n:\)</span> Vorraussage des Baums n <span class="math inline">\(n:\)</span> Stelle des jetzigen Baums <span class="math inline">\(N:\)</span> Anzahl der Bäume <span class="math display">\[F(x)=\frac 1N\sum_{n=1}^{N}f_n(x)\]</span></p>
+</section>
+
+<section>
+<section id="nutzung" class="title-slide slide level1 center">
+<h1>Nutzung</h1>
+<p>RFR ist besonders in komplexen Datensätzen von Vorteil, bei denen manche auch variabel viel gewichtet sind. Jeder Baum behält den Überblick über seine spezifische “Expertise” und durch die Anzahl wird ein Bild durch die “perfekten” Einzelteile aufgebaut. Jedoch kommt es auch mit Nachteilen. Durch das Aufbauen mehrerer kleinen Teile wird nie ein gesamtes Bild erstellt, und bestimmte Daten können in manchen Fällen weit vom richtigen Preis e# Richtig</p>
+</section>
+<section class="slide level2">
+
+<p>Random Forest Regression beschreibt eine Art von Regression, bei welchem kleine, unabhängige Modelle individuell eine Entscheidung treffen. Diese spiegeln effektiv große Menschenmengen, wodurch sich die “richtige” (beliebteste) Meinung selbst mit Ausreißern durchsetzt.</p>
+</section></section>
+<section id="realitätsbezug" class="title-slide slide level1 center">
+<h1>Realitätsbezug</h1>
+<p>Jeder Baum stellt eine/n Expert en/in dar. Durch die Kombination von mehreren Expertenmeinungen mit einer jeweiligen spezialisierten Expertise kann die statistisch richtige Lösung gefunden werdenntfernt sein</p>
 
 </section>
     </div>
