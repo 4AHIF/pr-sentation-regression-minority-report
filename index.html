@@ -284,12 +284,14 @@ F(x) = \frac{1}{N} \sum_{n=1}^{N} f_n(x)
 <h2>1. Daten laden</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href=""></a>data <span class="op">=</span> fetch_california_housing()</span>
 <span id="cb1-2"><a href=""></a>X, y <span class="op">=</span> data.data, data.target</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Laden von California Housing Datensatz Trennung in Features X und Y</p>
 </section>
 <section id="daten-aufteilen" class="slide level2">
 <h2>2. Daten aufteilen</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href=""></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
 <span id="cb2-2"><a href=""></a>    X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span></span>
 <span id="cb2-3"><a href=""></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Datensatz wird in Trainings und Testdaten getrennt</p>
 </section>
 <section class="slide level2">
 
@@ -298,23 +300,26 @@ F(x) = \frac{1}{N} \sum_{n=1}^{N} f_n(x)
 <span id="cb3-2"><a href=""></a>    n_estimators<span class="op">=</span><span class="dv">100</span>,</span>
 <span id="cb3-3"><a href=""></a>    random_state<span class="op">=</span><span class="dv">42</span></span>
 <span id="cb3-4"><a href=""></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Definetion eines Random Forest mit 100 Bäumen als Grundkonfiguration</p>
 </section>
 <section class="slide level2">
 
 <h3 id="modell-trainieren-vorhersagen-treffen">4. Modell trainieren &amp; Vorhersagen treffen</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href=""></a>model.fit(X_train, y_train)</span>
 <span id="cb4-2"><a href=""></a>y_pred <span class="op">=</span> model.predict(X_test)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Das Model lernt aus den Daten und trifft eine Vorhersage</p>
 </section>
 <section class="slide level2">
 
 <h3 id="modell-bewerten">5. Modell bewerten</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href=""></a>mse <span class="op">=</span> mean_squared_error(y_test, y_pred)</span>
 <span id="cb5-2"><a href=""></a>r2 <span class="op">=</span> r2_score(y_test, y_pred)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Messung der Modellqualität mit MSE (Fehler) und R² (Erklärungsgrad)</p>
 </section>
 <section class="slide level2">
 
 <h3 id="ergebnisse">Ergebnisse:</h3>
-<div id="461f0add" class="cell" data-execution_count="1">
+<div id="3b3bddd5" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href=""></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> fetch_california_housing</span>
 <span id="cb6-2"><a href=""></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
 <span id="cb6-3"><a href=""></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestRegressor</span>
