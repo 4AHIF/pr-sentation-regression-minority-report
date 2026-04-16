@@ -46,6 +46,29 @@ jupyter: python3
 
 ---
 
+## Single Decision Tree vs. Random Forest
+
+::: {.columns .align-center}
+::: {.column width="40%"}
+
+![](images/random_forest.png){width=90%}
+
+:::
+
+::: {.column width="60%"}
+
+### Vergleich
+
+- **Single Decision Tree:** ein einzelner Entscheidungsweg  
+- **Random Forest:** viele Bäume + Mittelwert 
+
+- -> reduziert Overfitting, stabilere Ergebnisse  
+
+:::
+:::
+
+---
+
 ## Warum viele Bäume stärker sind
 
 - Training auf zufälligen Daten-Teilmengen  
@@ -73,12 +96,6 @@ $$
 - reale Daten  
 - mehrere Einflussfaktoren  
 - typisches Regressionsproblem  
-
----
-
-## Umsetzung mit Scikit-Learn
-
-Wir bauen das Modell Schritt für Schritt.
 
 ---
 
@@ -165,28 +182,7 @@ print("Mean Squared Error:", round(mse, 2))
 print("R² Score:", round(r2, 2))
 ```
 
-## Single Decision Tree vs. Random Forest
 
-::: {.columns .align-center}
-::: {.column width="40%"}
-
-![](images/random_forest.png){width=90%}
-
-:::
-
-::: {.column width="60%"}
-
-### Vergleich
-
-- **Single Decision Tree:** ein einzelner Entscheidungsweg  
-- **Random Forest:** viele Bäume + Mittelwert 
-
-- -> reduziert Overfitting, stabilere Ergebnisse  
-
-:::
-:::
-
----
 
 ## Vor- und Nachteile
 

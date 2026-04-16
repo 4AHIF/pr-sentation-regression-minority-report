@@ -242,6 +242,21 @@ Y2kun · PapyrusLikeMelon · WeizenMehl
 </ul>
 </div></div>
 </section>
+<section id="single-decision-tree-vs.-random-forest" class="slide level2">
+<h2>Single Decision Tree vs.&nbsp;Random Forest</h2>
+<div class="columns align-center">
+<div class="column" style="width:40%;">
+<p><img data-src="images/random_forest.png" style="width:90.0%"></p>
+</div><div class="column" style="width:60%;">
+<h3 id="vergleich">Vergleich</h3>
+<ul>
+<li class="fragment"><p><strong>Single Decision Tree:</strong> ein einzelner Entscheidungsweg<br>
+</p></li>
+<li class="fragment"><p><strong>Random Forest:</strong> viele Bäume + Mittelwert</p></li>
+<li class="fragment"><p>-&gt; reduziert Overfitting, stabilere Ergebnisse</p></li>
+</ul>
+</div></div>
+</section>
 <section id="warum-viele-bäume-stärker-sind" class="slide level2">
 <h2>Warum viele Bäume stärker sind</h2>
 <ul>
@@ -275,10 +290,6 @@ F(x) = \frac{1}{N} \sum_{n=1}^{N} f_n(x)
 </li>
 <li class="fragment">typisches Regressionsproblem</li>
 </ul>
-</section>
-<section id="umsetzung-mit-scikit-learn" class="slide level2">
-<h2>Umsetzung mit Scikit-Learn</h2>
-<p>Wir bauen das Modell Schritt für Schritt.</p>
 </section>
 <section id="daten-laden" class="slide level2">
 <h2>1. Daten laden</h2>
@@ -319,7 +330,7 @@ F(x) = \frac{1}{N} \sum_{n=1}^{N} f_n(x)
 <section class="slide level2">
 
 <h3 id="ergebnisse">Ergebnisse:</h3>
-<div id="1d15fe5c" class="cell" data-execution_count="1">
+<div id="edbe3016" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href=""></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> fetch_california_housing</span>
 <span id="cb6-2"><a href=""></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
 <span id="cb6-3"><a href=""></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestRegressor</span>
@@ -349,21 +360,6 @@ F(x) = \frac{1}{N} \sum_{n=1}^{N} f_n(x)
 R² Score: 0.81</code></pre>
 </div>
 </div>
-</section>
-<section id="single-decision-tree-vs.-random-forest" class="slide level2">
-<h2>Single Decision Tree vs.&nbsp;Random Forest</h2>
-<div class="columns align-center">
-<div class="column" style="width:40%;">
-<p><img data-src="images/random_forest.png" style="width:90.0%"></p>
-</div><div class="column" style="width:60%;">
-<h3 id="vergleich">Vergleich</h3>
-<ul>
-<li class="fragment"><p><strong>Single Decision Tree:</strong> ein einzelner Entscheidungsweg<br>
-</p></li>
-<li class="fragment"><p><strong>Random Forest:</strong> viele Bäume + Mittelwert</p></li>
-<li class="fragment"><p>-&gt; reduziert Overfitting, stabilere Ergebnisse</p></li>
-</ul>
-</div></div>
 </section>
 <section id="vor--und-nachteile" class="slide level2">
 <h2>Vor- und Nachteile</h2>
