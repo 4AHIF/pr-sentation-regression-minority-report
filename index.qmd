@@ -14,31 +14,31 @@ jupyter: python3
 
 ## Was ist Random Forest Regression?
 
-**Idee:** Viele einfache Modelle → ein starkes Modell
-
-- Ensemble-Modell: Viele Entscheidungsbäume arbeiten zusammen  
-- Jeder Baum trifft eine eigene Vorhersage  
--   Am Ende zählt der **Durchschnitt**
+- Ensemble-Modell: Mehrere Entscheidungsbäume
+- Bäume erhalten nur einen kleinen Teil der Features und Daten
+- Jeder Baum trifft eine Vorhersage  
+- Am Ende zählt der Durchschnitt
+- Stabiler und von Ausreißern beschützt
 
 ---
 
-## Ein Baum vs. viele Bäume
+## Baum oder Wald
 
 ::: {.columns}
 ::: {.column width="50%"}
 
 ###   Single Decision Tree
 - eine einzige Regelkette  
-- neigt zu Overfitting  
 - stark abhängig von Datenpunkten  
+- simpel und schnell
 
 :::
 
 ::: {.column width="50%"}
 
 ###   Random Forest
-- viele unterschiedliche Bäume  
-- reduziert Varianz  
+- viele "Expertenbäume"  
+- geringere Varianz
 - robuster gegenüber Ausreißern  
 
 :::
@@ -46,56 +46,49 @@ jupyter: python3
 
 ---
 
-## Single Decision Tree vs. Random Forest
+## Baum oder Wald
 
 ::: {.columns .align-center}
-::: {.column width="40%"}
+::: {.column width="100%"}
 
 ![](images/random_forest.png){width=90%}
 
 :::
-
-::: {.column width="60%"}
-
-### Vergleich
-
-- **Single Decision Tree:** ein einzelner Entscheidungsweg  
-- **Random Forest:** viele Bäume + Mittelwert 
-
-- -> reduziert Overfitting, stabilere Ergebnisse  
-
-:::
 :::
 
 ---
 
-## Warum viele Bäume stärker sind
+## Analogie: Experten
 
-- Training auf zufälligen Daten-Teilmengen  
-- Zufällige Auswahl von Features pro Baum  
--   Kombination ergibt stabile Vorhersage  
+- Jeder Baum hat einen "Fachbereich"
+    - Baum ein "Experte" in diesem Bereich
+    - z.B. 1: Immobilien, 2: Region, 3: Wirtschaft
+- Person fragt mehrere Experten
+- Bildet sich eigene Meinung
+    - 1 verrückter Experte beeinflusst Meinung nicht
+
 
 ---
 
-## Mathematische Intuition
+## Berechnung der Vorhersage
 
 $$
 F(x) = \frac{1}{N} \sum_{n=1}^{N} f_n(x)
 $$
 
-- $F(x)$ → finale Vorhersage  
-- $f_n(x)$ → einzelner Baum  
+- $F(x)$ → Finale Vorhersage  
+- $f_n(x)$ → Vorhersage des n-ten Baums  
 - $N$ → Anzahl der Bäume  
 
 ---
 
 ## Beispiel: California Housing
 
-**Ziel:** Vorhersage von Immobilienpreisen
+Vorhersage von Immobilienpreisen
 
-- reale Daten  
-- mehrere Einflussfaktoren  
-- typisches Regressionsproblem  
+- Reale Daten  
+- Viele Einflussfaktoren -> komplex
+- Perfekt für Random Forest Regression
 
 ---
 
@@ -105,7 +98,7 @@ $$
 data = fetch_california_housing()
 X, y = data.data, data.target
 ```
-Laden von California Housing Datensatz
+Laden des California Housing Datensatzes
 Trennung in Features X und Y
 
 ---
@@ -122,7 +115,7 @@ Datensatz wird in Trainings und Testdaten getrennt
 
 ---
 
-### 3. Model erstellen
+## 3. Model erstellen
 ```python
 model = RandomForestRegressor(
     n_estimators=100,
@@ -130,21 +123,21 @@ model = RandomForestRegressor(
 )
 ```
 
-Definetion eines Random Forest mit 100 Bäumen als Grundkonfiguration
+Definition eines Random Forest mit 100 Bäumen
 
 ---
 
-### 4. Modell trainieren & Vorhersagen treffen
+## 4. Modell trainieren & Vorhersagen treffen
 ```python
 model.fit(X_train, y_train)
 y_pred = model.predict(X_test)
 ```
 
-Das Model lernt aus den Daten und trifft eine Vorhersage
+Das Modell lernt aus den Daten und trifft eine Vorhersage
 
 ---
 
-### 5. Modell bewerten
+## 5. Modell bewerten
 ```python
 mse = mean_squared_error(y_test, y_pred)
 r2 = r2_score(y_test, y_pred)
@@ -183,7 +176,6 @@ print("R² Score:", round(r2, 2))
 ```
 
 
-
 ## Vor- und Nachteile
 
 ::: {.columns}
@@ -191,16 +183,16 @@ print("R² Score:", round(r2, 2))
 
 ### Vorteile
 - gut für komplexe Daten  
-- robust gegenüber Ausreißern  
-- reduziert Overfitting  
+- robust gegenüber Ausreißern
+- wenig Vorverarbeitung nötig
 
 :::
 
 ::: {.column width="50%"}
 
 ### Nachteile
-- „Black Box“  
-- langsamer als einzelne Bäume  
+- „Black Box“: Gesamtbild schwer verständlich
+- Training langsamer als einfache Regressionsmodelle  
 
 :::
 :::
@@ -209,8 +201,8 @@ print("R² Score:", round(r2, 2))
 
 ## Fazit
 
-  Random Forest = starkes Standardmodell
+Random Forest = starkes Standardmodell
 
-- viele schwache Modelle kombiniert  
-- sehr gute Performance  
-- wenig Tuning nötig
+- viele kleine Modelle kombiniert  
+- akkurate Vorhersagen
+- Besonders bei komplexen Problemen mit vielen Einflüssen
