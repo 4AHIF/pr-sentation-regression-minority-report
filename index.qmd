@@ -1,35 +1,79 @@
 ---
 title: "Random Forest Regression"
+subtitle: "Minority Report"
 author: "Y2kun, PapyrusLikeMelon, WeizenMehl"
 format:
-    revealjs:
-        theme: dark
-        footer: "Random Forest Regression"
-        slide-number: true
+  revealjs:
+    theme: light
+    footer: "Random Forest Regression"
+    slide-number: true
+    transition: slide
 jupyter: python3
 ---
 
-# Was ist das
-Random Forest Regression beschreibt eine Art von Regression, bei welchem kleine, unabhängige Modelle individuell eine Entscheidung treffen.
-Diese spiegeln effektiv große Menschenmengen, wodurch sich die "richtige" (beliebteste) Meinung selbst mit Ausreißern durchsetzt.
-Kein Baum lernt über alle Merkmale eines Datensatzes. Stattdessen lernen alle Bäume einen kleinen Teil des Datensatzes kennen, der sich der anderen unterscheidet, wodurch auch vernachlässigte Aspekte besser einbezogen werden können. Am Ende gibt jeder Baum eine Voraussage (z.B. des Preises) ab, und der Durchschnitt dieser Summe wird als finaler Wert erkannt
+## Was ist Random Forest Regression?
 
-# Berechnung Bagging
+- Ensemble-Prinzip: Viele "kleine" Meinungen zu einer statistischen Ausage kombiniert
+- Power of Many: Wie mehrere Experten an einem Tisch
+- "Richtige", oft vorkommende Aussagen überwiegen "falsche" Ausreißer.
 
-$F:$ gesammte Voraussage
-$f_n:$ Vorraussage des Baums n
-$n:$ Stelle des jetzigen Baums
-$N:$ Anzahl der Bäume
-$$F(x)=\frac 1N\sum_{n=1}^{N}f_n(x)$$
+## Das Bagging-Prinzip
 
-# Nutzung
-RFR ist besonders in komplexen Datensätzen von Vorteil, bei denen manche auch variabel viel gewichtet sind. Jeder Baum behält den Überblick über seine spezifische "Expertise" und durch die Anzahl wird ein Bild durch die "perfekten" Einzelteile aufgebaut.
-Jedoch kommt es auch mit Nachteilen. Durch das Aufbauen mehrerer kleinen Teile wird nie ein gesamtes Bild erstellt, und bestimmte Daten können in manchen Fällen weit vom richtigen Preis e# Richtig
+Warum sind viele Bäume besser als einer?
 
----
+- Jeder Baum lernt einen kleinen Teil des Problems kennen
+- -> Es werden oft vernachlässigte Aspekte miteinbezogen
+- Jeder Baum trifft eigene Vorhersage
 
-Random Forest Regression beschreibt eine Art von Regression, bei welchem kleine, unabhängige Modelle individuell eine Entscheidung treffen.
-Diese spiegeln effektiv große Menschenmengen, wodurch sich die "richtige" (beliebteste) Meinung selbst mit Ausreißern durchsetzt.
+## Berechnung (Bagging)
 
-# Realitätsbezug
-Jeder Baum stellt eine/n Expert en/in dar. Durch die Kombination von mehreren Expertenmeinungen mit einer jeweiligen spezialisierten Expertise kann die statistisch richtige Lösung gefunden werdenntfernt sein
+Der finale Wert ist der Durchschnitt aller Vorhersagen:
+
+$$F(x) = \frac{1}{N} \sum_{n=1}^{N} f_n(x)$$
+
+- $F(x)$: Gesamte Vorhersage
+- $f_n(x)$: Vorhersage des einzelnen Baums $n$
+- $N$: Gesamtzahl der Bäume
+
+## Wie kleine Experten
+
+- Jeder Baum stellt eine/n Expert/in dar.
+- Jeder Baum kennt sein "Fachgebiet" genau.
+- Mit diesen Fachmeinungen entsteht ein informiertes Gesamtbild.
+
+## Vor- und Nachteile
+
+Vorteile:
+- Bei komplexen Datensätzen (viele Faktoren)
+- Fehlerunanfälliger (einzelne Bäume können fehlerhaft sein)
+
+Nachteile:
+- "Black Box": Kein traditionelles, gut ersichtliches Gesamtbild
+- Randfälle mit weit falschen Vorhersagen
+
+## Beispiel Einzelhandel
+Vorhersage von Verkaufszahlen
+
+Warum RFR?
+- Viele Faktoren:
+  - Wochentag & Jahreszeit
+  - Feiertage & Rabattaktionen
+  - Wetter
+- RFR kann diese gut erfassen und eine Vorhersage treffen
+
+## Umsetzung mit Sklearn
+
+```python
+#| echo: true
+#| eval: false
+from sklearn.ensemble import RandomForestRegressor
+
+# Modell initialisieren (z.B. mit 100 Entscheidungsbäumen)
+model = RandomForestRegressor(n_estimators=100, random_state=42)
+
+# Modell mit Daten trainieren 
+# (X_train = Merkmale, y_train = echte Verkaufszahlen)
+model.fit(X_train, y_train)
+
+# Neue Verkaufszahlen vorhersagen
+vorhersage = model.predict(X_test)
