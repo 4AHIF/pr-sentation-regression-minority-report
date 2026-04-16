@@ -4,7 +4,7 @@ subtitle: "Minority Report"
 author: "Y2kun, PapyrusLikeMelon, WeizenMehl"
 format:
   revealjs:
-    theme: light
+    theme: dark
     footer: "Random Forest Regression"
     slide-number: true
     transition: slide
@@ -77,3 +77,4 @@ model.fit(X_train, y_train)
 
 # Neue Verkaufszahlen vorhersagen
 vorhersage = model.predict(X_test)
+```
