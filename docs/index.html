@@ -6,8 +6,8 @@
 <script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="index_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.9.37">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.26">
 
   <meta name="author" content="Y2kun · PapyrusLikeMelon · WeizenMehl">
   <title>Random Forest Regression</title>
@@ -17,9 +17,6 @@
   <link rel="stylesheet" href="index_files/libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="index_files/libs/revealjs/dist/reveal.css">
   <style>
-    /* Default styles provided by pandoc.
-    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-    */
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -98,7 +95,7 @@
     code span.vs { color: #abe338; } /* VerbatimString */
     code span.wa { color: #dcc6e0; } /* Warning */
   </style>
-  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-4df01d85d5cf19cc6202400f4f043f84.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-327cab17de08e4a17faa7d61f48ae591.css">
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -210,92 +207,87 @@ Y2kun · PapyrusLikeMelon · WeizenMehl
 </section>
 <section id="was-ist-random-forest-regression" class="slide level2">
 <h2>Was ist Random Forest Regression?</h2>
-<p><strong>Idee:</strong> Viele einfache Modelle → ein starkes Modell</p>
 <ul>
-<li class="fragment">Ensemble-Modell: Viele Entscheidungsbäume arbeiten zusammen<br>
+<li class="fragment">Ensemble-Modell: Mehrere Entscheidungsbäume</li>
+<li class="fragment">Bäume erhalten nur einen kleinen Teil der Features und Daten</li>
+<li class="fragment">Jeder Baum trifft eine Vorhersage<br>
 </li>
-<li class="fragment">Jeder Baum trifft eine eigene Vorhersage<br>
-</li>
-<li class="fragment">Am Ende zählt der <strong>Durchschnitt</strong></li>
+<li class="fragment">Am Ende zählt der Durchschnitt</li>
+<li class="fragment">Stabiler und von Ausreißern beschützt</li>
 </ul>
 </section>
-<section id="ein-baum-vs.-viele-bäume" class="slide level2">
-<h2>Ein Baum vs.&nbsp;viele Bäume</h2>
+<section id="baum-oder-wald" class="slide level2">
+<h2>Baum oder Wald</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <h3 id="single-decision-tree">Single Decision Tree</h3>
 <ul>
 <li class="fragment">eine einzige Regelkette<br>
 </li>
-<li class="fragment">neigt zu Overfitting<br>
+<li class="fragment">stark abhängig von Datenpunkten<br>
 </li>
-<li class="fragment">stark abhängig von Datenpunkten</li>
+<li class="fragment">simpel und schnell</li>
 </ul>
 </div><div class="column" style="width:50%;">
 <h3 id="random-forest">Random Forest</h3>
 <ul>
-<li class="fragment">viele unterschiedliche Bäume<br>
+<li class="fragment">viele “Expertenbäume”<br>
 </li>
-<li class="fragment">reduziert Varianz<br>
-</li>
+<li class="fragment">geringere Varianz</li>
 <li class="fragment">robuster gegenüber Ausreißern</li>
 </ul>
 </div></div>
 </section>
-<section id="single-decision-tree-vs.-random-forest" class="slide level2">
-<h2>Single Decision Tree vs.&nbsp;Random Forest</h2>
+<section id="baum-oder-wald-1" class="slide level2">
+<h2>Baum oder Wald</h2>
 <div class="columns align-center">
-<div class="column" style="width:40%;">
+<div class="column" style="width:100%;">
 <p><img data-src="images/random_forest.png" style="width:90.0%"></p>
-</div><div class="column" style="width:60%;">
-<h3 id="vergleich">Vergleich</h3>
-<ul>
-<li class="fragment"><p><strong>Single Decision Tree:</strong> ein einzelner Entscheidungsweg<br>
-</p></li>
-<li class="fragment"><p><strong>Random Forest:</strong> viele Bäume + Mittelwert</p></li>
-<li class="fragment"><p>-&gt; reduziert Overfitting, stabilere Ergebnisse</p></li>
-</ul>
 </div></div>
 </section>
-<section id="warum-viele-bäume-stärker-sind" class="slide level2">
-<h2>Warum viele Bäume stärker sind</h2>
+<section id="analogie-experten" class="slide level2">
+<h2>Analogie: Experten</h2>
 <ul>
-<li class="fragment">Training auf zufälligen Daten-Teilmengen<br>
-</li>
-<li class="fragment">Zufällige Auswahl von Features pro Baum<br>
-</li>
-<li class="fragment">Kombination ergibt stabile Vorhersage</li>
+<li class="fragment">Jeder Baum hat einen “Fachbereich”
+<ul>
+<li class="fragment">Baum ein “Experte” in diesem Bereich</li>
+<li class="fragment">z.B. 1: Immobilien, 2: Region, 3: Wirtschaft</li>
+</ul></li>
+<li class="fragment">Person fragt mehrere Experten</li>
+<li class="fragment">Bildet sich eigene Meinung
+<ul>
+<li class="fragment">1 verrückter Experte beeinflusst Meinung nicht</li>
+</ul></li>
 </ul>
 </section>
-<section id="mathematische-intuition" class="slide level2">
-<h2>Mathematische Intuition</h2>
+<section id="berechnung-der-vorhersage" class="slide level2">
+<h2>Berechnung der Vorhersage</h2>
 <p><span class="math display">\[
 F(x) = \frac{1}{N} \sum_{n=1}^{N} f_n(x)
 \]</span></p>
 <ul>
-<li class="fragment"><span class="math inline">\(F(x)\)</span> → finale Vorhersage<br>
+<li class="fragment"><span class="math inline">\(F(x)\)</span> → Finale Vorhersage<br>
 </li>
-<li class="fragment"><span class="math inline">\(f_n(x)\)</span> → einzelner Baum<br>
+<li class="fragment"><span class="math inline">\(f_n(x)\)</span> → Vorhersage des n-ten Baums<br>
 </li>
 <li class="fragment"><span class="math inline">\(N\)</span> → Anzahl der Bäume</li>
 </ul>
 </section>
 <section id="beispiel-california-housing" class="slide level2">
 <h2>Beispiel: California Housing</h2>
-<p><strong>Ziel:</strong> Vorhersage von Immobilienpreisen</p>
+<p>Vorhersage von Immobilienpreisen</p>
 <ul>
-<li class="fragment">reale Daten<br>
+<li class="fragment">Reale Daten<br>
 </li>
-<li class="fragment">mehrere Einflussfaktoren<br>
-</li>
-<li class="fragment">typisches Regressionsproblem</li>
+<li class="fragment">Viele Einflussfaktoren -&gt; komplex</li>
+<li class="fragment">Perfekt für Random Forest Regression</li>
 </ul>
 </section>
 <section id="daten-laden" class="slide level2">
 <h2>1. Daten laden</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href=""></a>data <span class="op">=</span> fetch_california_housing()</span>
 <span id="cb1-2"><a href=""></a>X, y <span class="op">=</span> data.data, data.target</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Laden von California Housing Datensatz Trennung in Features X und Y</p>
+<p>Laden des California Housing Datensatzes Trennung in Features X und Y</p>
 </section>
 <section id="daten-aufteilen" class="slide level2">
 <h2>2. Daten aufteilen</h2>
@@ -304,25 +296,22 @@ F(x) = \frac{1}{N} \sum_{n=1}^{N} f_n(x)
 <span id="cb2-3"><a href=""></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Datensatz wird in Trainings und Testdaten getrennt</p>
 </section>
-<section class="slide level2">
-
-<h3 id="model-erstellen">3. Model erstellen</h3>
+<section id="model-erstellen" class="slide level2">
+<h2>3. Model erstellen</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href=""></a>model <span class="op">=</span> RandomForestRegressor(</span>
 <span id="cb3-2"><a href=""></a>    n_estimators<span class="op">=</span><span class="dv">100</span>,</span>
 <span id="cb3-3"><a href=""></a>    random_state<span class="op">=</span><span class="dv">42</span></span>
 <span id="cb3-4"><a href=""></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Definetion eines Random Forest mit 100 Bäumen als Grundkonfiguration</p>
+<p>Definition eines Random Forest mit 100 Bäumen</p>
 </section>
-<section class="slide level2">
-
-<h3 id="modell-trainieren-vorhersagen-treffen">4. Modell trainieren &amp; Vorhersagen treffen</h3>
+<section id="modell-trainieren-vorhersagen-treffen" class="slide level2">
+<h2>4. Modell trainieren &amp; Vorhersagen treffen</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href=""></a>model.fit(X_train, y_train)</span>
 <span id="cb4-2"><a href=""></a>y_pred <span class="op">=</span> model.predict(X_test)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Das Model lernt aus den Daten und trifft eine Vorhersage</p>
+<p>Das Modell lernt aus den Daten und trifft eine Vorhersage</p>
 </section>
-<section class="slide level2">
-
-<h3 id="modell-bewerten">5. Modell bewerten</h3>
+<section id="modell-bewerten" class="slide level2">
+<h2>5. Modell bewerten</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href=""></a>mse <span class="op">=</span> mean_squared_error(y_test, y_pred)</span>
 <span id="cb5-2"><a href=""></a>r2 <span class="op">=</span> r2_score(y_test, y_pred)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Messung der Modellqualität mit MSE (Fehler) und R² (Erklärungsgrad)</p>
@@ -330,7 +319,7 @@ F(x) = \frac{1}{N} \sum_{n=1}^{N} f_n(x)
 <section class="slide level2">
 
 <h3 id="ergebnisse">Ergebnisse:</h3>
-<div id="edbe3016" class="cell" data-execution_count="1">
+<div id="950d55ca" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href=""></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> fetch_california_housing</span>
 <span id="cb6-2"><a href=""></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
 <span id="cb6-3"><a href=""></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestRegressor</span>
@@ -369,16 +358,14 @@ R² Score: 0.81</code></pre>
 <ul>
 <li class="fragment">gut für komplexe Daten<br>
 </li>
-<li class="fragment">robust gegenüber Ausreißern<br>
-</li>
-<li class="fragment">reduziert Overfitting</li>
+<li class="fragment">robust gegenüber Ausreißern</li>
+<li class="fragment">wenig Vorverarbeitung nötig</li>
 </ul>
 </div><div class="column" style="width:50%;">
 <h3 id="nachteile">Nachteile</h3>
 <ul>
-<li class="fragment">„Black Box“<br>
-</li>
-<li class="fragment">langsamer als einzelne Bäume</li>
+<li class="fragment">„Black Box“: Gesamtbild schwer verständlich</li>
+<li class="fragment">Training langsamer als einfache Regressionsmodelle</li>
 </ul>
 </div></div>
 </section>
@@ -386,11 +373,10 @@ R² Score: 0.81</code></pre>
 <h2>Fazit</h2>
 <p>Random Forest = starkes Standardmodell</p>
 <ul>
-<li class="fragment">viele schwache Modelle kombiniert<br>
+<li class="fragment">viele kleine Modelle kombiniert<br>
 </li>
-<li class="fragment">sehr gute Performance<br>
-</li>
-<li class="fragment">wenig Tuning nötig</li>
+<li class="fragment">akkurate Vorhersagen</li>
+<li class="fragment">Besonders bei komplexen Problemen mit vielen Einflüssen</li>
 </ul>
 
 </section>
