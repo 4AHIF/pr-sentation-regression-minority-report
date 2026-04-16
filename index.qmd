@@ -1,80 +1,207 @@
 ---
 title: "Random Forest Regression"
 subtitle: "Minority Report"
-author: "Y2kun, PapyrusLikeMelon, WeizenMehl"
+author: "Y2kun · PapyrusLikeMelon · WeizenMehl"
 format:
   revealjs:
     theme: dark
     footer: "Random Forest Regression"
     slide-number: true
     transition: slide
+    incremental: true
 jupyter: python3
 ---
 
 ## Was ist Random Forest Regression?
 
-- Ensemble-Prinzip: Viele "kleine" Meinungen zu einer statistischen Ausage kombiniert
-- Power of Many: Wie mehrere Experten an einem Tisch
-- "Richtige", oft vorkommende Aussagen überwiegen "falsche" Ausreißer.
+**Idee:** Viele einfache Modelle → ein starkes Modell
 
-## Das Bagging-Prinzip
+- Ensemble-Modell: Viele Entscheidungsbäume arbeiten zusammen  
+- Jeder Baum trifft eine eigene Vorhersage  
+-   Am Ende zählt der **Durchschnitt**
 
-Warum sind viele Bäume besser als einer?
+---
 
-- Jeder Baum lernt einen kleinen Teil des Problems kennen
-- -> Es werden oft vernachlässigte Aspekte miteinbezogen
-- Jeder Baum trifft eigene Vorhersage
+## Ein Baum vs. viele Bäume
 
-## Berechnung (Bagging)
+::: {.columns}
+::: {.column width="50%"}
 
-Der finale Wert ist der Durchschnitt aller Vorhersagen:
+###   Single Decision Tree
+- eine einzige Regelkette  
+- neigt zu Overfitting  
+- stark abhängig von Datenpunkten  
 
-$$F(x) = \frac{1}{N} \sum_{n=1}^{N} f_n(x)$$
+:::
 
-- $F(x)$: Gesamte Vorhersage
-- $f_n(x)$: Vorhersage des einzelnen Baums $n$
-- $N$: Gesamtzahl der Bäume
+::: {.column width="50%"}
 
-## Wie kleine Experten
+###   Random Forest
+- viele unterschiedliche Bäume  
+- reduziert Varianz  
+- robuster gegenüber Ausreißern  
 
-- Jeder Baum stellt eine/n Expert/in dar.
-- Jeder Baum kennt sein "Fachgebiet" genau.
-- Mit diesen Fachmeinungen entsteht ein informiertes Gesamtbild.
+:::
+:::
+
+---
+
+## Warum viele Bäume stärker sind
+
+- Training auf zufälligen Daten-Teilmengen  
+- Zufällige Auswahl von Features pro Baum  
+-   Kombination ergibt stabile Vorhersage  
+
+---
+
+## Mathematische Intuition
+
+$$
+F(x) = \frac{1}{N} \sum_{n=1}^{N} f_n(x)
+$$
+
+- $F(x)$ → finale Vorhersage  
+- $f_n(x)$ → einzelner Baum  
+- $N$ → Anzahl der Bäume  
+
+---
+
+## Beispiel: California Housing
+
+**Ziel:** Vorhersage von Immobilienpreisen
+
+- reale Daten  
+- mehrere Einflussfaktoren  
+- typisches Regressionsproblem  
+
+---
+
+## Umsetzung mit Scikit-Learn
+
+Wir bauen das Modell Schritt für Schritt.
+
+---
+
+## 1. Daten laden
+
+```python
+data = fetch_california_housing()
+X, y = data.data, data.target
+```
+
+---
+
+## 2. Daten aufteilen
+
+```python
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+```
+---
+
+### 3. Model erstellen
+```python
+model = RandomForestRegressor(
+    n_estimators=100,
+    random_state=42
+)
+```
+---
+
+### 4. Modell trainieren & Vorhersagen treffen
+```python
+model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+```
+
+---
+
+### 5. Modell bewerten
+```python
+mse = mean_squared_error(y_test, y_pred)
+r2 = r2_score(y_test, y_pred)
+```
+---
+
+### Ergebnisse:
+```{python}
+#| echo: true
+#| output-location: fragment
+from sklearn.datasets import fetch_california_housing
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import mean_squared_error, r2_score
+
+data = fetch_california_housing()
+X, y = data.data, data.target
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+model = RandomForestRegressor(n_estimators=100, random_state=42)
+model.fit(X_train, y_train)
+
+y_pred = model.predict(X_test)
+
+mse = mean_squared_error(y_test, y_pred)
+r2 = r2_score(y_test, y_pred)
+
+print("Mean Squared Error:", round(mse, 2))
+print("R² Score:", round(r2, 2))
+```
+
+## Single Decision Tree vs. Random Forest
+
+::: {.columns .align-center}
+::: {.column width="40%"}
+
+![](images/random_forest.png){width=90%}
+
+:::
+
+::: {.column width="60%"}
+
+### Vergleich
+
+- **Single Decision Tree:** ein einzelner Entscheidungsweg  
+- **Random Forest:** viele Bäume + Mittelwert 
+
+- -> reduziert Overfitting, stabilere Ergebnisse  
+
+:::
+:::
+
+---
 
 ## Vor- und Nachteile
 
-Vorteile:
-- Bei komplexen Datensätzen (viele Faktoren)
-- Fehlerunanfälliger (einzelne Bäume können fehlerhaft sein)
+::: {.columns}
+::: {.column width="50%"}
 
-Nachteile:
-- "Black Box": Kein traditionelles, gut ersichtliches Gesamtbild
-- Randfälle mit weit falschen Vorhersagen
+### Vorteile
+- gut für komplexe Daten  
+- robust gegenüber Ausreißern  
+- reduziert Overfitting  
 
-## Beispiel Einzelhandel
-Vorhersage von Verkaufszahlen
+:::
 
-Warum RFR?
-- Viele Faktoren:
-  - Wochentag & Jahreszeit
-  - Feiertage & Rabattaktionen
-  - Wetter
-- RFR kann diese gut erfassen und eine Vorhersage treffen
+::: {.column width="50%"}
 
-## Umsetzung mit Sklearn
+### Nachteile
+- „Black Box“  
+- langsamer als einzelne Bäume  
 
-```python
-#| echo: true
-#| eval: false
-from sklearn.ensemble import RandomForestRegressor
+:::
+:::
 
-# Modell initialisieren (z.B. mit 100 Entscheidungsbäumen)
-model = RandomForestRegressor(n_estimators=100, random_state=42)
+---
 
-# Modell mit Daten trainieren 
-# (X_train = Merkmale, y_train = echte Verkaufszahlen)
-model.fit(X_train, y_train)
+## Fazit
 
-# Neue Verkaufszahlen vorhersagen
-vorhersage = model.predict(X_test)
-```
+  Random Forest = starkes Standardmodell
+
+- viele schwache Modelle kombiniert  
+- sehr gute Performance  
+- wenig Tuning nötig
