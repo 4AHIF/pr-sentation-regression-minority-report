@@ -22,6 +22,18 @@ jupyter: python3
 
 ---
 
+## Analogie: Experten
+
+- Jeder Baum hat einen "Fachbereich"
+    - Baum ein "Experte" in diesem Bereich
+    - z.B. 1: Immobilien, 2: Region, 3: Wirtschaft
+- Person fragt mehrere Experten
+- Bildet sich eigene Meinung
+    - 1 verrückter Experte beeinflusst Meinung nicht
+
+
+---
+
 ## Baum oder Wald
 
 ::: {.columns}
@@ -55,18 +67,6 @@ jupyter: python3
 
 :::
 :::
-
----
-
-## Analogie: Experten
-
-- Jeder Baum hat einen "Fachbereich"
-    - Baum ein "Experte" in diesem Bereich
-    - z.B. 1: Immobilien, 2: Region, 3: Wirtschaft
-- Person fragt mehrere Experten
-- Bildet sich eigene Meinung
-    - 1 verrückter Experte beeinflusst Meinung nicht
-
 
 ---
 
