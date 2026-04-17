@@ -8,7 +8,6 @@ format:
     footer: "Random Forest Regression"
     slide-number: true
     transition: slide
-    incremental: true
 jupyter: python3
 ---
 
